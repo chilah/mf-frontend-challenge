@@ -1,0 +1,12 @@
+.input_label {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.input_container {
+    border: 2px solid grey;
+    width: 250px;
+    height: 30px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
