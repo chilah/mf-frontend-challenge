@@ -1,10 +1,13 @@
 import React from 'react';
 import { Box } from '.';
 
-type Props = {};
+type Props = {
+  hours: number;
+};
 
 const HoursBox: React.FC<Props> = (props) => {
-  return <Box value="002" label="Total Hours" />;
+  const { hours } = props;
+  return <Box value={hours} label="Total Hours" />;
 };
 
 export default HoursBox;

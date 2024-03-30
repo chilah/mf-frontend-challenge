@@ -12,7 +12,7 @@
 
 .table_header_label {
     border: 1px solid grey;
-    padding: 4px 16px;
+    padding: 8px 16px;
     text-align: start;
 }
 
@@ -35,4 +35,5 @@
     color: red;
     text-decoration: underline;
     width: 100px;
+    cursor: pointer;
 }

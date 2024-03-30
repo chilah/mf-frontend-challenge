@@ -3,7 +3,7 @@ import style from './Box.module.css';
 
 type Props = {
   label: string;
-  value: string;
+  value: string | number;
 };
 
 const Box: React.FC<Props> = (props) => {

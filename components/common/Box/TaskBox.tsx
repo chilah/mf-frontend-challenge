@@ -1,10 +1,13 @@
 import React from 'react';
 import { Box } from '.';
 
-type Props = {};
+type Props = {
+  tasks: number;
+};
 
 const TaskBox: React.FC<Props> = (props) => {
-  return <Box value="002" label="Total Tasks" />;
+  const { tasks } = props;
+  return <Box value={tasks} label="Total Tasks" />;
 };
 
 export default TaskBox;

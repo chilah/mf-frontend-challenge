@@ -17,10 +17,11 @@ export type DataType = {
 export type TableProps = {
   headers: HeaderType[];
   dataList: DataType[];
+  onDelete?: (id: number) => void;
 };
 
 const Table: React.FC<TableProps> = (props) => {
-  const { headers, dataList = [] } = props;
+  const { headers, dataList = [], onDelete } = props;
 
   return (
     <div>
@@ -55,6 +56,11 @@ const Table: React.FC<TableProps> = (props) => {
                       style.table_data_value,
                       style.table_data_delete,
                     ])}
+                    onClick={() => {
+                      if (onDelete && data.id) {
+                        onDelete(data.id);
+                      }
+                    }}
                   >
                     Delete
                   </td>

@@ -4,10 +4,11 @@ import style from './TodoListTable.module.css';
 
 type Props = {
   data: DataType[];
+  onDelete: (id: number) => void;
 };
 
 const TodoListTable: React.FC<Props> = (props) => {
-  const { data } = props;
+  const { data, onDelete } = props;
 
   return (
     <div className={style.todolist_container}>
@@ -20,6 +21,7 @@ const TodoListTable: React.FC<Props> = (props) => {
           { title: 'Action' },
         ]}
         dataList={data}
+        onDelete={onDelete}
       />
     </div>
   );

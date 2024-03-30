@@ -1,10 +1,13 @@
 import React from 'react';
 import { Box } from '.';
 
-type Props = {};
+type Props = {
+  days: number;
+};
 
 const DaysBox: React.FC<Props> = (props) => {
-  return <Box value="092" label="Total Days" />;
+  const { days } = props;
+  return <Box value={days.toFixed(2)} label="Total Days" />;
 };
 
 export default DaysBox;

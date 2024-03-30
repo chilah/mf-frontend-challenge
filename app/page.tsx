@@ -1,36 +1,77 @@
 'use client';
 
-import { Button, DaysBox, HoursBox, Input, TaskBox } from '@/components/common';
+import React from 'react';
+import {
+  Button,
+  DataType,
+  DaysBox,
+  HoursBox,
+  Input,
+  TaskBox,
+  TaskForm,
+  TodoListTable,
+} from '@/components/common';
 import style from './page.module.css';
-import { TodoListTable } from '@/components/common/Table';
+import { createMockData, localStorageUtil } from '@/utils';
 
-export default function Home() {
+const Page: React.FC = () => {
+  const [todolist, setTodoList] = React.useState<DataType[]>([]);
+
+  const onAddTask = (data: DataType) => {
+    setTodoList([...todolist, { ...data }]);
+  };
+
+  const onDeleteTask = (id: number) => {
+    setTodoList(todolist.filter((task) => task.id !== id));
+  };
+
+  const calculdateTasks = React.useMemo(() => {
+    return todolist.length;
+  }, [todolist]);
+
+  const calculateHours = React.useMemo(() => {
+    return todolist.reduce((total: number, currentValue: DataType) => {
+      return currentValue.time + total;
+    }, 0);
+  }, [todolist]);
+
+  const calculateDays = React.useMemo(() => {
+    return todolist.reduce((total: number, currentValue: DataType) => {
+      return currentValue.time / 8 + total;
+    }, 0);
+  }, [todolist]);
+
+  React.useEffect(() => {
+    const data = localStorageUtil.getData('frontend-challenge') as DataType[];
+
+    if (!data) {
+      createMockData();
+    } else {
+      setTodoList(data);
+    }
+  }, []);
+
   return (
     <div className="page-container">
       <div className={style.group_page_container}>
-        <p>Challenge</p>
+        <p>Task Management App</p>
 
         <div className={style.group_box_container}>
-          <TaskBox />
-          <HoursBox />
-          <DaysBox />
+          <TaskBox tasks={calculdateTasks} />
+          <DaysBox days={calculateDays} />
+          <HoursBox hours={calculateHours} />
         </div>
 
         <div className={style.group_form_container}>
-          <Input label="Task title" type="text" />
-          <Input label="Time Required(in Hrs)" type="text" />
-          <Button
-            label="Add"
-            onClick={() => {
-              console.log('hi');
-            }}
-          />
+          <TaskForm onAddTask={onAddTask} />
         </div>
 
         <div>
-          <TodoListTable data={[{ title: 'Todo task', time: 2, id: 1 }]} />
+          <TodoListTable data={todolist} onDelete={onDeleteTask} />
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Page;
