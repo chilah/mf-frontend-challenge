@@ -2,6 +2,7 @@
 
 import React from 'react';
 import style from './Button.module.css';
+import { combineClass } from '@/utils';
 
 type Props = {
   label: string | React.ReactNode;
@@ -12,9 +13,13 @@ type Props = {
 >;
 
 const Button: React.FC<Props> = (props) => {
-  const { label, onClick, ...rest } = props;
+  const { label, onClick, className = '', ...rest } = props;
   return (
-    <button onClick={onClick} className={style.button_container} {...rest}>
+    <button
+      onClick={onClick}
+      className={combineClass([style.button_container, className])}
+      {...rest}
+    >
       {label}
     </button>
   );

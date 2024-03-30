@@ -3,6 +3,7 @@
 import React, { HTMLAttributes } from 'react';
 import style from './Table.module.css';
 import { combineClass } from '@/utils';
+import { Button, Modal } from '..';
 
 export type HeaderType = {
   title: string;
@@ -22,6 +23,13 @@ export type TableProps = {
 
 const Table: React.FC<TableProps> = (props) => {
   const { headers, dataList = [], onDelete } = props;
+
+  const [selectedDeleteTask, setSelectedDeleteTask] =
+    React.useState<DataType>();
+
+  const onCloseModal = () => {
+    setSelectedDeleteTask(undefined);
+  };
 
   return (
     <div>
@@ -57,9 +65,7 @@ const Table: React.FC<TableProps> = (props) => {
                       style.table_data_delete,
                     ])}
                     onClick={() => {
-                      if (onDelete && data.id) {
-                        onDelete(data.id);
-                      }
+                      setSelectedDeleteTask(data);
                     }}
                   >
                     Delete
@@ -69,6 +75,30 @@ const Table: React.FC<TableProps> = (props) => {
             ))}
         </tbody>
       </table>
+
+      <Modal open={!!selectedDeleteTask} onClose={onCloseModal}>
+        <>
+          <div>Confirm Delete</div>
+          <div>Task: {selectedDeleteTask?.title}</div>
+          <div className={style.table_modal_button_container}>
+            <Button
+              label="Confirm"
+              onClick={() => {
+                if (selectedDeleteTask && onDelete) {
+                  onDelete(selectedDeleteTask.id);
+                  onCloseModal();
+                }
+              }}
+              className={style.table_modal_confirm_button}
+            />
+            <Button
+              label="Cancel"
+              onClick={onCloseModal}
+              className={style.table_modal_cancel_button}
+            />
+          </div>
+        </>
+      </Modal>
     </div>
   );
 };

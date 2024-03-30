@@ -16,13 +16,14 @@ const Modal: React.FC<Props> = (props) => {
           <div className={style.modal_background} onClick={onClose} />
           <div className={style.modal_container}>
             <div className={style.modal_main_body}>
-              <div className={style.modal_close_container}>
-                <div className={style.modal_close_icon} onClick={onClose}>
-                  X
+              <div className={style.modal_content_body}>
+                <div>
+                  <div className={style.modal_close_icon} onClick={onClose}>
+                    X
+                  </div>
                 </div>
+                {children}
               </div>
-
-              <div className={style.modal_content_body}>{children}</div>
             </div>
           </div>
         </div>

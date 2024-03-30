@@ -21,6 +21,7 @@
     z-index: 3;
     border-radius: 4px;
     border: 1px solid grey;
+    display: flex;
 }
 
 .modal_main_body {
@@ -30,12 +31,13 @@
     position: relative;
     display: flex;
     flex: 1;
+    flex-direction: column;
 }
-
+/* 
 .modal_close_container {
     height: 30px;
 
-}
+} */
 
 .modal_close_icon {
     position: absolute;
@@ -50,4 +52,5 @@
     align-items: center;
     flex-direction: column;
     gap: 16px;
+    flex: 1;
 }

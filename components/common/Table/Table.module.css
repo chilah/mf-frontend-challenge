@@ -37,3 +37,16 @@
     width: 100px;
     cursor: pointer;
 }
+
+.table_modal_button_container {
+    display: flex;
+    gap: 24px;
+}
+
+.table_modal_confirm_button {
+    background: red;
+}
+
+.table_modal_cancel_button {
+    background: grey;
+}
