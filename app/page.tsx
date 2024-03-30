@@ -50,7 +50,7 @@ const Page: React.FC = () => {
   React.useEffect(() => {
     const data = localStorageUtil.getData('frontend-challenge') as DataType[];
 
-    if (!data) {
+    if (!data || data.length === 0) {
       createMockData();
     } else {
       setTodoList(data);
