@@ -16,8 +16,8 @@ const TodoListTable: React.FC<Props> = (props) => {
       <Table
         headers={[
           { title: 'Task Title' },
-          { title: 'Time Required(in Hrs)', className: 'w-[300px]' },
-          { title: 'Action', className: 'w-[100px]' },
+          { title: 'Time Required(in Hrs)' },
+          { title: 'Action' },
         ]}
         dataList={data}
       />

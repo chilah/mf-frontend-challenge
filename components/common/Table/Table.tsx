@@ -5,7 +5,6 @@ import style from './Table.module.css';
 import { combineClass } from '@/utils';
 
 export type HeaderType = {
-  className?: HTMLAttributes<string>['className'];
   title: string;
 };
 
