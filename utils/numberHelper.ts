@@ -5,3 +5,7 @@ export const addZeroPad = (num: number, length?: number) => {
     maximumFractionDigits: length,
   });
 };
+
+export const checkHasNumberType = (value: string): boolean => {
+  return /^[0-9]+$/.test(value);
+};

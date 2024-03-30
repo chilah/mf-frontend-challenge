@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, DataType, Input, Modal } from '..';
+import { checkHasNumberType } from '@/utils';
 
 type TaskFormType = {
   title: string;
@@ -32,12 +33,28 @@ const TaskForm: React.FC<Props> = (props) => {
     }));
   };
 
+  const hasTitleValidLength = React.useMemo(() => {
+    return taskForm.title.length <= 128;
+  }, [taskForm.title]);
+
+  const hasNumberValidRange = React.useMemo(() => {
+    if (!checkHasNumberType(taskForm.time)) {
+      return false;
+    }
+
+    const parseTime = parseInt(taskForm.time);
+
+    return parseTime > 0 && parseTime <= 24;
+  }, [taskForm.time]);
+
+  const hasNumberValidType = React.useMemo(() => {
+    return checkHasNumberType(taskForm.time);
+  }, [taskForm.time]);
+
   const onSubmit = () => {
     const parseTime = parseInt(taskForm.time);
-    const hasValidLenth = taskForm.title.length < 128;
-    const hasValidRange = parseTime > 0 && parseTime <= 24;
 
-    if (Number.isNaN(parseTime) || !hasValidLenth || !hasValidRange) {
+    if (!hasNumberValidType || !hasTitleValidLength || !hasNumberValidRange) {
       setIsOpenModal(true);
     } else {
       onAddTask({
@@ -74,7 +91,19 @@ const TaskForm: React.FC<Props> = (props) => {
         onClose={() => {
           setIsOpenModal(false);
         }}
-      ></Modal>
+      >
+        <>
+          {!hasTitleValidLength ? (
+            <div>Title length should less than 128 characters.</div>
+          ) : null}
+
+          {!hasNumberValidType ? (
+            <div>Time should be numertic values.</div>
+          ) : null}
+
+          {!hasNumberValidRange ? <div>Time range shoule be 0-24</div> : null}
+        </>
+      </Modal>
     </React.Fragment>
   );
 };

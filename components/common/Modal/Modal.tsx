@@ -22,11 +22,7 @@ const Modal: React.FC<Props> = (props) => {
                 </div>
               </div>
 
-              <div className={style.modal_content_body}>
-                <div>Title length should less than 128 characters.</div>
-                <div>Time should be numertic values.</div>
-                <div>Time range shoule be 0-24</div>
-              </div>
+              <div className={style.modal_content_body}>{children}</div>
             </div>
           </div>
         </div>
