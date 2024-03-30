@@ -60,20 +60,22 @@ const Page: React.FC = () => {
   return (
     <div className="page-container">
       <div className={style.group_page_container}>
-        <p>Task Management App</p>
+        <p className={style.page_header}>Task Management App</p>
 
-        <div className={style.group_box_container}>
-          <TaskBox tasks={calculdateTasks} />
-          <DaysBox days={calculateDays} />
-          <HoursBox hours={calculateHours} />
-        </div>
+        <div className={style.group_content_container}>
+          <div className={style.group_box_container}>
+            <TaskBox tasks={calculdateTasks} />
+            <DaysBox days={calculateDays} />
+            <HoursBox hours={calculateHours} />
+          </div>
 
-        <div className={style.group_form_container}>
-          <TaskForm onAddTask={onAddTask} />
-        </div>
+          <div className={style.group_form_container}>
+            <TaskForm onAddTask={onAddTask} />
+          </div>
 
-        <div>
-          <TodoListTable data={todolist} onDelete={onDeleteTask} />
+          <div>
+            <TodoListTable data={todolist} onDelete={onDeleteTask} />
+          </div>
         </div>
       </div>
     </div>
