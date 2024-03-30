@@ -2,6 +2,7 @@
 
 import { Button, DaysBox, HoursBox, Input, TaskBox } from '@/components/common';
 import style from './page.module.css';
+import { TodoListTable } from '@/components/common/Table';
 
 export default function Home() {
   return (
@@ -24,6 +25,10 @@ export default function Home() {
               console.log('hi');
             }}
           />
+        </div>
+
+        <div>
+          <TodoListTable data={[{ title: 'Todo task', time: 2, id: 1 }]} />
         </div>
       </div>
     </div>

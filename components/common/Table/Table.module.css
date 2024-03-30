@@ -1,0 +1,38 @@
+
+
+
+.table_container {
+    width: 100%;
+    border-spacing: 0px;
+}
+
+.table_header_container {
+    font-weight:  bold;
+}
+
+.table_header_label {
+    border: 1px solid grey;
+    padding: 4px 16px;
+    text-align: start;
+}
+
+.table_data_container {
+    font-size: 14px;
+}
+
+.table_data_value {
+    border: 1px solid grey;
+    padding: 4px 16px;
+    text-align: start;
+    height: 30px;
+}
+
+.table_data_time {
+    width: 300px;
+}
+
+.table_data_delete {
+    color: red;
+    text-decoration: underline;
+    width: 100px;
+}
