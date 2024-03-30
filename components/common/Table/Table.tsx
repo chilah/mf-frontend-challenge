@@ -82,7 +82,7 @@ const Table: React.FC<TableProps> = (props) => {
           <div>Task: {selectedDeleteTask?.title}</div>
           <div className={style.table_modal_button_container}>
             <Button
-              label="Confirm"
+              label="OK"
               onClick={() => {
                 if (selectedDeleteTask && onDelete) {
                   onDelete(selectedDeleteTask.id);

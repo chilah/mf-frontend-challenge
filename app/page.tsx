@@ -20,10 +20,14 @@ const Page: React.FC = () => {
 
   const onAddTask = (data: DataType) => {
     setTodoList([...todolist, { ...data }]);
+    localStorageUtil.saveData('frontend-challenge', [...todolist, { ...data }]);
   };
 
   const onDeleteTask = (id: number) => {
-    setTodoList(todolist.filter((task) => task.id !== id));
+    const filteredTodoList = todolist.filter((task) => task.id !== id);
+
+    setTodoList(filteredTodoList);
+    localStorageUtil.saveData('frontend-challenge', filteredTodoList);
   };
 
   const calculdateTasks = React.useMemo(() => {
