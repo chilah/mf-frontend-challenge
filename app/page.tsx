@@ -7,6 +7,7 @@ import {
   DaysBox,
   HoursBox,
   Input,
+  Modal,
   TaskBox,
   TaskForm,
   TodoListTable,
@@ -37,7 +38,8 @@ const Page: React.FC = () => {
 
   const calculateDays = React.useMemo(() => {
     return todolist.reduce((total: number, currentValue: DataType) => {
-      return currentValue.time / 8 + total;
+      const time = currentValue.time / 8;
+      return time + total;
     }, 0);
   }, [todolist]);
 

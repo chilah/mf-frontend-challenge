@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, DataType, Input } from '..';
+import { Button, DataType, Input, Modal } from '..';
 
 type TaskFormType = {
   title: string;
@@ -17,7 +17,9 @@ type Props = {
 
 const TaskForm: React.FC<Props> = (props) => {
   const { onAddTask } = props;
+
   const [taskForm, setTaskForm] = React.useState<TaskFormType>(defalutTaskForm);
+  const [isOpenModal, setIsOpenModal] = React.useState<boolean>(false);
 
   const isTaskFormValid = React.useMemo(() => {
     return Boolean(taskForm.time && taskForm.title);
@@ -32,14 +34,20 @@ const TaskForm: React.FC<Props> = (props) => {
 
   const onSubmit = () => {
     const parseTime = parseInt(taskForm.time);
+    const hasValidLenth = taskForm.title.length < 128;
+    const hasValidRange = parseTime > 0 && parseTime <= 24;
 
-    onAddTask({
-      time: parseTime,
-      title: taskForm.time,
-      id: Date.now(),
-    });
+    if (Number.isNaN(parseTime) || !hasValidLenth || !hasValidRange) {
+      setIsOpenModal(true);
+    } else {
+      onAddTask({
+        time: parseTime,
+        title: taskForm.title,
+        id: Date.now(),
+      });
 
-    setTaskForm(defalutTaskForm);
+      setTaskForm(defalutTaskForm);
+    }
   };
 
   return (
@@ -60,6 +68,13 @@ const TaskForm: React.FC<Props> = (props) => {
       />
 
       <Button disabled={!isTaskFormValid} label="Add" onClick={onSubmit} />
+
+      <Modal
+        open={isOpenModal}
+        onClose={() => {
+          setIsOpenModal(false);
+        }}
+      ></Modal>
     </React.Fragment>
   );
 };
