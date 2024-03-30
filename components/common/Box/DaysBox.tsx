@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box } from '.';
+import { addZeroPad } from '@/utils';
 
 type Props = {
   days: number;
@@ -7,7 +8,12 @@ type Props = {
 
 const DaysBox: React.FC<Props> = (props) => {
   const { days } = props;
-  return <Box value={days.toFixed(2)} label="Total Days" />;
+
+  const dayString = React.useMemo(() => {
+    return addZeroPad(days, 2);
+  }, [days]);
+
+  return <Box value={dayString} label="Total Days" />;
 };
 
 export default DaysBox;
