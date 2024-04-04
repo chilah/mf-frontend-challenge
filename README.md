@@ -2,7 +2,7 @@
 
 - node 20+
 
-## How install the project
+## How to install the project
 
 - npm install
 - npm run dev
